@@ -26,5 +26,26 @@ public final class ProdutoAssertions {
                 .isEqualTo("Categoria 1");
         assertThat(atual.getStatus())
                 .isEqualTo(Produto.Status.AVAILABLE);
+        assertThat(atual.getDescricao())
+                .isEqualTo("Descricao do Produto Teste");
+        assertThat(atual.getValor())
+                .isEqualByComparingTo("1.99");
+        assertThat(atual.getFotos())
+                .singleElement()
+                .satisfies(foto -> {
+                    assertThat(foto.getFotoId()).isNull();
+                    assertThat(foto.getFileName())
+                            .isEqualTo("file-name-1.jpg");
+                    assertThat(foto.getBase64())
+                            .isEqualTo("Y2Fyb2xpbmEgSGVycmVyYQ==");
+                    assertThat(foto.getLink()).isNull();
+                    assertThat(foto.getCriadoEm()).isNull();
+                    assertThat(foto.getAtualizadoEm()).isNull();
+                });
+        assertThat(atual.getTags())
+                .containsExactly("tag-1");
+        assertThat(atual.getPetStorePetId()).isNull();
+        assertThat(atual.getCriadoEm()).isNull();
+        assertThat(atual.getAtualizadoEm()).isNull();
     }
 }
